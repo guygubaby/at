@@ -1,8 +1,8 @@
 {
-  "name": "@bryce-loskie/tp",
+  "name": "@bryce-loskie/t",
   "version": "0.0.1-beta.4",
   "packageManager": "pnpm@6.32.3",
-  "description": "Opinionated vue transition presets",
+  "description": "Opinionated vue transition component",
   "publishConfig": {
     "access": "public"
   },
@@ -38,12 +38,12 @@
   "license": "MIT",
   "sideEffects": false,
   "bugs": {
-    "url": "https://github.com/guygubaby/tp/issues"
+    "url": "https://github.com/guygubaby/t/issues"
   },
-  "homepage": "https://github.com/guygubaby/tp#readme",
+  "homepage": "https://github.com/guygubaby/t#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/guygubaby/tp.git"
+    "url": "git+https://github.com/guygubaby/t.git"
   },
   "keywords": ["vue transition"],
   "devDependencies": {
