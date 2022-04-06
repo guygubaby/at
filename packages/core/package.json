@@ -1,0 +1,55 @@
+{
+  "name": "@bryce-loskie/tp",
+  "version": "0.0.1-beta.4",
+  "packageManager": "pnpm@6.32.3",
+  "description": "Opinionated vue transition presets",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*",
+        "./dist/index.d.ts"
+      ]
+    }
+  },
+  "scripts": {
+    "prepublishOnly": "pnpm build",
+    "dev": "pnpm build -- --watch",
+    "build": "vueup",
+    "start": "esno src/index.ts"
+  },
+  "funding": "https://github.com/sponsors/guygubaby",
+  "author": "guygubaby <guygubaby@gmail.com>",
+  "license": "MIT",
+  "sideEffects": false,
+  "bugs": {
+    "url": "https://github.com/guygubaby/tp/issues"
+  },
+  "homepage": "https://github.com/guygubaby/tp#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guygubaby/tp.git"
+  },
+  "keywords": ["vue transition"],
+  "devDependencies": {
+    "@bryce-loskie/vueup": "^1.0.13"
+  },
+  "peerDependencies": {
+    "vue": "^3.0.0"
+  }
+}
