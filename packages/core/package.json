@@ -1,6 +1,6 @@
 {
   "name": "@bryce-loskie/t",
-  "version": "0.0.1-beta.4",
+  "version": "0.0.1-beta.1",
   "packageManager": "pnpm@6.32.3",
   "description": "Opinionated vue transition component",
   "publishConfig": {
