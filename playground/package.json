@@ -12,6 +12,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@bryce-loskie/at": "*"
+    "@bryce-loskie/at": "workspace:*"
   }
 }

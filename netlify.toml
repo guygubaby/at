@@ -4,7 +4,7 @@
 
 [build]
   publish = "playground/dist"
-  command = "npx pnpm i --store=node_modules/.pnpm-store && npx pnpm run build:play"
+  command = "npx pnpm i --store=node_modules/.pnpm-store && npx pnpm run build && npx pnpm run build:play"
 
 [[redirects]]
   from = "/*"
