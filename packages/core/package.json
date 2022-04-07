@@ -1,6 +1,6 @@
 {
   "name": "@bryce-loskie/at",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "packageManager": "pnpm@6.32.3",
   "description": "Vue transition component composed with animate.css",
   "publishConfig": {
@@ -38,12 +38,12 @@
   "license": "MIT",
   "sideEffects": false,
   "bugs": {
-    "url": "https://github.com/guygubaby/t/issues"
+    "url": "https://github.com/guygubaby/at/issues"
   },
-  "homepage": "https://github.com/guygubaby/t#readme",
+  "homepage": "https://github.com/guygubaby/at#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/guygubaby/t.git"
+    "url": "git+https://github.com/guygubaby/at.git"
   },
   "keywords": [
     "vue transition"
