@@ -63,11 +63,9 @@ importers:
 
   playground:
     specifiers:
-      '@bryce-loskie/at': ^0.0.1
-      animate.css: ^4.1.1
+      '@bryce-loskie/at': workspace:*
     dependencies:
       '@bryce-loskie/at': link:../packages/core
-      animate.css: 4.1.1
 
 packages:
 
