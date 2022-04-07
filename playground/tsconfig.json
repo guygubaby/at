@@ -14,7 +14,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "core/*": ["../packages/core/src/*"],
+      "at/*": ["../packages/core/src/*"],
     },
     "types": ["vite/client", "node", "vite-plugin-pages/client"],
   },

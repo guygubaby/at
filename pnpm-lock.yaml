@@ -55,11 +55,19 @@ importers:
   packages/core:
     specifiers:
       '@bryce-loskie/vueup': ^1.0.13
+      animate.css: ^4.1.1
+    dependencies:
+      animate.css: 4.1.1
     devDependencies:
       '@bryce-loskie/vueup': 1.0.13_c6312374b67400fc160adc04b79258e1
 
   playground:
-    specifiers: {}
+    specifiers:
+      '@bryce-loskie/at': ^0.0.1
+      animate.css: ^4.1.1
+    dependencies:
+      '@bryce-loskie/at': link:../packages/core
+      animate.css: 4.1.1
 
 packages:
 
@@ -1514,6 +1522,10 @@ packages:
       json-schema-traverse: 0.4.1
       uri-js: 4.4.1
     dev: true
+
+  /animate.css/4.1.1:
+    resolution: {integrity: sha512-+mRmCTv6SbCmtYJCN4faJMNFVNN5EuCTTprDTAo7YzIGji2KADmakjVA3+8mVDkZ2Bf09vayB35lSQIex2+QaQ==}
+    dev: false
 
   /ansi-escapes/4.3.2:
     resolution: {integrity: sha512-gKXj5ALrKWQLsYG9jlTRmR/xKluxHV+Z9QEwNIgCfM1/uwPMCuzVVnh5mwTd+OuBZcwSIMbqssNWRm1lE51QaQ==}

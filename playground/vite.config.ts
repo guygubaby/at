@@ -12,7 +12,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@/': `${resolve(__dirname, 'src')}/`,
-      'core': resolve('../packages/core/src/'),
+      'at': resolve('../packages/core/src/'),
     },
   },
   plugins: [

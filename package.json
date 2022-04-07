@@ -1,7 +1,7 @@
 {
-  "name": "t-monorepo",
+  "name": "at-monorepo",
   "version": "0.0.0",
-  "description": "monorepo-starter",
+  "description": "at-monorepo",
   "main": "index.js",
   "private": true,
   "scripts": {

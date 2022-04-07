@@ -1,8 +1,8 @@
 {
-  "name": "@bryce-loskie/t",
-  "version": "0.0.1-beta.1",
+  "name": "@bryce-loskie/at",
+  "version": "0.0.2",
   "packageManager": "pnpm@6.32.3",
-  "description": "Opinionated vue transition component",
+  "description": "Vue transition component composed with animate.css",
   "publishConfig": {
     "access": "public"
   },
@@ -45,11 +45,16 @@
     "type": "git",
     "url": "git+https://github.com/guygubaby/t.git"
   },
-  "keywords": ["vue transition"],
+  "keywords": [
+    "vue transition"
+  ],
   "devDependencies": {
     "@bryce-loskie/vueup": "^1.0.13"
   },
   "peerDependencies": {
     "vue": "^3.0.0"
+  },
+  "dependencies": {
+    "animate.css": "^4.1.1"
   }
 }
