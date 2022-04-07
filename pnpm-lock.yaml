@@ -63,7 +63,7 @@ importers:
 
   playground:
     specifiers:
-      '@bryce-loskie/at': workspace:*
+      '@bryce-loskie/at': '*'
     dependencies:
       '@bryce-loskie/at': link:../packages/core
 

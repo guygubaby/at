@@ -130,6 +130,13 @@ const setAnimateDirection = (node: HTMLElement, reverse: boolean) => {
   return () => node.style.animationDirection = ''
 }
 
+const cleanups: Fn[] = []
+
+const cleanSideEffects = () => {
+  cleanups.forEach(fn => fn())
+  cleanups.length = 0
+}
+
 const animateCSS = (payload: AnimatePayload) => {
   return new Promise<string>((resolve) => {
     const { elem, animation, reverse = false, duration = DEFAULT_DIRATION, enterDuration, leaveDuration, delay = 0, enterDelay, leaveDelay } = payload
@@ -148,19 +155,12 @@ const animateCSS = (payload: AnimatePayload) => {
     const animationName = `${prefix}${animation}`
     const animatedName = `${prefix}animated`
 
-    const cleanups: Fn[] = []
-
     cleanups.push(
       setDuration(node, reverse ? outDuration : inDuration),
       setDelay(node, reverse ? outDelay : inDelay),
       setAnimateDirection(node, reverse),
       addClass(node, animatedName, animationName),
     )
-
-    const cleanSideEffects = () => {
-      cleanups.forEach(fn => fn())
-      cleanups.length = 0
-    }
 
     // When the animation ends, we clean the classes and resolve the Promise
     function handleAnimationEnd(event: AnimationEvent) {
