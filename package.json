@@ -11,7 +11,7 @@
     "lint:fix": "pnpm lint -- --fix",
     "play": "pnpm -C playground run dev",
     "build:play": "pnpm -C playground run build",
-    "release": "bumpp package.json packages/*/package.json --commit --push --tag",
+    "release": "bumpp packages/*/package.json --commit --push --tag",
     "test": "jest",
     "test:update": "jest -u"
   },
