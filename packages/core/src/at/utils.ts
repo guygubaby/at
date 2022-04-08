@@ -3,14 +3,16 @@ import type { Fn, MaybeRef } from '@vueuse/core'
 import type { AnimateCssNames } from './misc'
 import { DEFAULT_DIRATION } from './misc'
 
-export const isDef = (val: unknown): val is NonNullable<unknown> => val !== undefined && val !== null
-
 export interface AnimatePayload {
   elem: MaybeRef<HTMLElement>
   animation: AnimateCssNames
   reverse?: boolean
   delay?: number
   duration?: number
+
+  // following are just for animateElem function usage
+  repeat?: number | string | 'infinite'
+  direction?: 'reverse' | 'normal' | 'alternate' | 'alternate-reverse' | 'initial' | 'inherit'
 }
 
 const addClass = (node: HTMLElement, ...clazz: string[]) => {
@@ -28,25 +30,30 @@ const setDuration = (node: HTMLElement, duration: number) => {
 }
 
 const setDelay = (node: HTMLElement, delay: number) => {
-  node.style.setProperty('--animate-delay', `${delay}ms`)
-  return () => node.style.removeProperty('--animate-delay')
+  node.style.animationDelay = `${delay}ms`
+  return () => node.style.animationDelay = ''
 }
 
-const setAnimateDirection = (node: HTMLElement, reverse: boolean) => {
-  node.style.animationDirection = reverse ? 'reverse' : 'normal'
+const setRepeat = (node: HTMLElement, repeat: AnimatePayload['repeat']) => {
+  node.style.animationIterationCount = `${repeat ?? ''}`
+  return () => node.style.animationIterationCount = ''
+}
+
+const setDirection = (node: HTMLElement, direction: AnimatePayload['direction']) => {
+  node.style.animationDirection = direction ?? 'normal'
   return () => node.style.animationDirection = ''
 }
 
-const cleanups: Fn[] = []
-
-const cleanSideEffects = () => {
-  cleanups.forEach(fn => fn())
-  cleanups.length = 0
-}
-
 export const animateCSS = (payload: AnimatePayload) => {
+  const cleanups: Fn[] = []
+
+  const cleanSideEffects = () => {
+    cleanups.forEach(fn => fn())
+    cleanups.length = 0
+  }
+
   return new Promise<string>((resolve) => {
-    const { elem, animation, reverse = false, duration = DEFAULT_DIRATION, delay = 0 } = payload
+    const { elem, animation, reverse = false, duration = DEFAULT_DIRATION, delay = 0, repeat, direction } = payload
 
     const node = unref(elem)
     if (!node) return resolve('elem is falsy')
@@ -55,11 +62,13 @@ export const animateCSS = (payload: AnimatePayload) => {
 
     const animationName = `${prefix}${animation}`
     const animatedName = `${prefix}animated`
+    const animationDirection: AnimateElemPayload['direction'] = reverse ? 'reverse' : direction
 
     cleanups.push(
       setDuration(node, duration),
       setDelay(node, delay),
-      setAnimateDirection(node, reverse),
+      setDirection(node, animationDirection),
+      setRepeat(node, repeat),
       addClass(node, animatedName, animationName),
     )
 
@@ -74,16 +83,11 @@ export const animateCSS = (payload: AnimatePayload) => {
   })
 }
 
-export type AnimateElemPayload = Pick<AnimatePayload, 'elem' | 'animation' | 'delay' | 'duration'>
+export type AnimateElemPayload = Pick<AnimatePayload, 'elem' | 'animation' | 'delay' | 'duration' | 'repeat' | 'direction'>
 
 /**
  * Directly apply animation on an element
  */
-export const animateElem = (elem: MaybeRef<HTMLElement>, animation: AnimateCssNames, duration = DEFAULT_DIRATION, delay = 0) => {
-  return animateCSS({
-    elem,
-    animation,
-    duration,
-    delay,
-  })
+export const animateElem = (payload: AnimateElemPayload) => {
+  return animateCSS(payload)
 }

@@ -8,18 +8,27 @@
     <button class="btn mt-10" @click="toggle()">
       toggle
     </button>
+    <br>
+    <p class="my-10">
+      Or
+    </p>
+    <br>
+    <button ref="buttonRef" class="btn">
+      animte el directly
+    </button>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useToggle } from '@vueuse/core'
-import AT, { AnimateCssPresets, defineOptions } from '@bryce-loskie/at'
+import AT, { AnimateCssPresets, animateElem, defineOptions } from 'at/index'
 
 const transitionOptions = defineOptions({
   appear: true,
   enterAnimate: AnimateCssPresets.backInDown,
   leaveAnimate: AnimateCssPresets.backOutUp,
-  enterDuration: 3 * 1000,
+  enterDuration: 1000,
+  leaveDuration: 3000,
 })
 
 const isShow = ref(true)
@@ -48,4 +57,15 @@ const handleL = () => {
 const handleAl = () => {
   console.log('after leave')
 }
+
+const buttonRef = ref()
+
+onMounted(() => {
+  animateElem({
+    elem: buttonRef.value,
+    animation: AnimateCssPresets.rotateIn,
+    repeat: '2',
+    direction: 'alternate',
+  })
+})
 </script>

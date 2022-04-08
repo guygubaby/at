@@ -18,7 +18,7 @@
 <script lang="ts" setup>
 import type { Fn } from '@vueuse/core'
 import type { AnimateCssNames } from './misc'
-import { animateCSS, isDef } from './utils'
+import { animateCSS } from './utils'
 
 interface Props {
   /**
@@ -98,8 +98,8 @@ const onEnter = (elem: HTMLElement, done: Fn) => {
     return
   }
 
-  const finalDuration = isDef(enterDuration) ? enterDuration : duration
-  const finalDelay = isDef(enterDelay) ? enterDelay : delay
+  const finalDuration = enterDuration ?? duration
+  const finalDelay = enterDelay ?? delay
 
   animateCSS({
     elem,
@@ -123,8 +123,8 @@ const onLeave = (elem: HTMLElement, done: Fn) => {
     return
   }
 
-  const finalDuration = isDef(leaveDuration) ? leaveDuration : duration
-  const finalDelay = isDef(leaveDelay) ? leaveDelay : delay
+  const finalDuration = leaveDuration ?? duration
+  const finalDelay = leaveDelay ?? delay
 
   animateCSS({
     elem,
