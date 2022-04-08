@@ -1,8 +1,8 @@
 {
   "name": "@bryce-loskie/at",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "packageManager": "pnpm@6.32.3",
-  "description": "animate.css powered vue transition component",
+  "description": "Animate.css powered vue transition lib",
   "publishConfig": {
     "access": "public"
   },
