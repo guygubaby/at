@@ -80,12 +80,12 @@ const props = defineProps<Props>()
 
 const emit = defineEmits(['before-enter', 'enter', 'after-enter', 'enter-cancelled', 'leave', 'before-leave', 'after-leave', 'leave-cancelled'])
 
-const onBeforeEnter = () => emit('before-enter')
-const onAfterEnter = () => emit('after-enter')
-const onEnterCancelled = () => emit('enter-cancelled')
-const onBeforeLeave = () => emit('before-leave')
-const onAfterLeave = () => emit('after-leave')
-const onLeaveCancelled = () => emit('leave-cancelled')
+const onBeforeEnter = (el: any) => emit('before-enter', el)
+const onAfterEnter = (el: HTMLElement) => emit('after-enter', el)
+const onEnterCancelled = (el: any) => emit('enter-cancelled', el)
+const onBeforeLeave = (el: any) => emit('before-leave', el)
+const onAfterLeave = (el: HTMLElement) => emit('after-leave', el)
+const onLeaveCancelled = (el: any) => emit('leave-cancelled', el)
 
 const onEnter = (elem: HTMLElement, done: Fn) => {
   emit('enter')
@@ -94,7 +94,7 @@ const onEnter = (elem: HTMLElement, done: Fn) => {
   const animation = (enterAnimate || name) as AnimateCssNames
   if (!animation) {
     done()
-    onAfterEnter()
+    onAfterEnter(elem)
     return
   }
 
@@ -105,7 +105,7 @@ const onEnter = (elem: HTMLElement, done: Fn) => {
     delay: enterDelay || delay,
   }).then(() => {
     done()
-    onAfterEnter()
+    onAfterEnter(elem)
   })
 }
 
@@ -116,7 +116,7 @@ const onLeave = (elem: HTMLElement, done: Fn) => {
   const animation = (leaveAnimate || name) as AnimateCssNames
   if (!animation) {
     done()
-    onAfterLeave()
+    onAfterLeave(elem)
     return
   }
 
@@ -128,7 +128,7 @@ const onLeave = (elem: HTMLElement, done: Fn) => {
     delay: leaveDelay || delay,
   }).then(() => {
     done()
-    onAfterLeave()
+    onAfterLeave(elem)
   })
 }
 </script>
