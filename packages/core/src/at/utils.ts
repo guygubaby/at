@@ -3,6 +3,8 @@ import type { Fn, MaybeRef } from '@vueuse/core'
 import type { AnimateCssNames } from './misc'
 import { DEFAULT_DIRATION } from './misc'
 
+export const isDef = (val: unknown): val is NonNullable<unknown> => val !== undefined && val !== null
+
 export interface AnimatePayload {
   elem: MaybeRef<HTMLElement>
   animation: AnimateCssNames

@@ -18,7 +18,7 @@
 <script lang="ts" setup>
 import type { Fn } from '@vueuse/core'
 import type { AnimateCssNames } from './misc'
-import { animateCSS } from './utils'
+import { animateCSS, isDef } from './utils'
 
 interface Props {
   /**
@@ -98,11 +98,14 @@ const onEnter = (elem: HTMLElement, done: Fn) => {
     return
   }
 
+  const finalDuration = isDef(enterDuration) ? enterDuration : duration
+  const finalDelay = isDef(enterDelay) ? enterDelay : delay
+
   animateCSS({
     elem,
     animation,
-    duration: enterDuration || duration,
-    delay: enterDelay || delay,
+    duration: finalDuration,
+    delay: finalDelay,
   }).then(() => {
     done()
     onAfterEnter(elem)
@@ -120,12 +123,15 @@ const onLeave = (elem: HTMLElement, done: Fn) => {
     return
   }
 
+  const finalDuration = isDef(leaveDuration) ? leaveDuration : duration
+  const finalDelay = isDef(leaveDelay) ? leaveDelay : delay
+
   animateCSS({
     elem,
     animation,
     reverse: !leaveAnimate, // if leaveAnimate is not set, reverse is true
-    duration: leaveDuration || duration,
-    delay: leaveDelay || delay,
+    duration: finalDuration,
+    delay: finalDelay,
   }).then(() => {
     done()
     onAfterLeave(elem)
