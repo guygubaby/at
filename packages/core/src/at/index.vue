@@ -4,8 +4,12 @@
     type="animation"
     :mode="props.mode"
     :appear="props.appear"
+    @before-enter="onBeforeEnter"
     @enter="onEnter"
+    @enter-cancelled="onEnterCancelled"
+    @before-leave="onBeforeLeave"
     @leave="onLeave"
+    @leave-cancelled="onLeaveCancelled"
   >
     <slot />
   </transition>
@@ -74,21 +78,35 @@ interface Props {
 
 const props = defineProps<Props>()
 
-const emit = defineEmits(['enter', 'leave'])
+const emit = defineEmits(['before-enter', 'enter', 'after-enter', 'enter-cancelled', 'leave', 'before-leave', 'after-leave', 'leave-cancelled'])
+
+const onBeforeEnter = () => emit('before-enter')
+const onAfterEnter = () => emit('after-enter')
+const onEnterCancelled = () => emit('enter-cancelled')
+const onBeforeLeave = () => emit('before-leave')
+const onAfterLeave = () => emit('after-leave')
+const onLeaveCancelled = () => emit('leave-cancelled')
 
 const onEnter = (elem: HTMLElement, done: Fn) => {
   emit('enter')
 
   const { name, enterAnimate, duration, enterDuration, delay, enterDelay } = props
   const animation = (enterAnimate || name) as AnimateCssNames
-  if (!animation) return done()
+  if (!animation) {
+    done()
+    onAfterEnter()
+    return
+  }
 
   animateCSS({
     elem,
     animation,
     duration: enterDuration || duration,
     delay: enterDelay || delay,
-  }).then(done)
+  }).then(() => {
+    done()
+    onAfterEnter()
+  })
 }
 
 const onLeave = (elem: HTMLElement, done: Fn) => {
@@ -96,7 +114,11 @@ const onLeave = (elem: HTMLElement, done: Fn) => {
 
   const { name, leaveAnimate, duration, leaveDuration, delay, leaveDelay } = props
   const animation = (leaveAnimate || name) as AnimateCssNames
-  if (!animation) return done()
+  if (!animation) {
+    done()
+    onAfterLeave()
+    return
+  }
 
   animateCSS({
     elem,
@@ -104,6 +126,9 @@ const onLeave = (elem: HTMLElement, done: Fn) => {
     reverse: !leaveAnimate, // if leaveAnimate is not set, reverse is true
     duration: leaveDuration || duration,
     delay: leaveDelay || delay,
-  }).then(done)
+  }).then(() => {
+    done()
+    onAfterLeave()
+  })
 }
 </script>
