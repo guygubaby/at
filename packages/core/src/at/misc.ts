@@ -222,9 +222,17 @@ export const DEFAULT_DIRATION = 1 * 1000
 
 export interface PropsType {
   /**
+   * @deprecated use `animate` instead
+   *
    * Animation name from animate.css, default is ''
    */
-  name?: AnimateCssNames | ''
+  // name?: AnimateCssNames | '' // because of props can not use outer type, so use string instead
+  name?: string
+  /**
+   * Animation name from animate.css, default is ''
+   */
+  // name?: AnimateCssNames | '' // because of props can not use outer type, so use string instead
+  animate?: string
   /**
    * Enter animation name, default is `name`, higher property than `name` if set
    */

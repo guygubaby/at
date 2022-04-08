@@ -21,10 +21,11 @@
 
 <script setup lang="ts">
 import { useToggle } from '@vueuse/core'
-import AT, { AnimateCssPresets, animateElem, defineOptions } from 'at/index'
+import AT, { AnimateCssPresets, animateElem, defineOptions } from '@bryce-loskie/at'
 
 const transitionOptions = defineOptions({
   appear: true,
+  animate: 'backInDown',
   enterAnimate: AnimateCssPresets.backInDown,
   leaveAnimate: AnimateCssPresets.backOutUp,
   enterDuration: 1000,

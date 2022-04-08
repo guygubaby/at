@@ -22,10 +22,17 @@ import { animateCSS } from './utils'
 
 interface Props {
   /**
+   * @deprecated use `animate` instead
+   *
    * Animation name from animate.css, default is ''
    */
   // name?: AnimateCssNames | '' // because of props can not use outer type, so use string instead
   name?: string
+  /**
+   * Animation name from animate.css, default is ''
+   */
+  // name?: AnimateCssNames | '' // because of props can not use outer type, so use string instead
+  animate?: string
   /**
    * Enter animation name, default is `name`, higher property than `name` if set
    */
@@ -90,8 +97,8 @@ const onLeaveCancelled = (el: any) => emit('leave-cancelled', el)
 const onEnter = (elem: HTMLElement, done: Fn) => {
   emit('enter')
 
-  const { name, enterAnimate, duration, enterDuration, delay, enterDelay } = props
-  const animation = (enterAnimate || name) as AnimateCssNames
+  const { name, animate, enterAnimate, duration, enterDuration, delay, enterDelay } = props
+  const animation = (enterAnimate ?? animate ?? name) as AnimateCssNames
   if (!animation) {
     done()
     onAfterEnter(elem)
@@ -115,8 +122,8 @@ const onEnter = (elem: HTMLElement, done: Fn) => {
 const onLeave = (elem: HTMLElement, done: Fn) => {
   emit('leave')
 
-  const { name, leaveAnimate, duration, leaveDuration, delay, leaveDelay } = props
-  const animation = (leaveAnimate || name) as AnimateCssNames
+  const { name, animate, leaveAnimate, duration, leaveDuration, delay, leaveDelay } = props
+  const animation = (leaveAnimate ?? animate ?? name) as AnimateCssNames
   if (!animation) {
     done()
     onAfterLeave(elem)
