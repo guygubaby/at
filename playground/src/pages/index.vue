@@ -19,7 +19,7 @@ const transitionOptions = defineOptions({
   appear: true,
   enterAnimate: AnimateCssPresets.backInDown,
   leaveAnimate: AnimateCssPresets.backOutUp,
-  duration: 500,
+  enterDuration: 3 * 1000,
 })
 
 const isShow = ref(true)

@@ -71,22 +71,23 @@ interface Props {
 }
 
 // props type does not support import from other files
-const props = withDefaults(defineProps<Props>(), {
-  mode: undefined,
-  appear: false,
+// const props = withDefaults(defineProps<Props>(), {
+//   mode: undefined,
+//   appear: false,
 
-  name: '',
-  enterAnimate: '',
-  leaveAnimate: '',
+//   name: '',
+//   enterAnimate: '',
+//   leaveAnimate: '',
 
-  delay: 0,
-  enterDelay: 0,
-  leaveDelay: 0,
+//   delay: 0,
+//   enterDelay: 0,
+//   leaveDelay: 0,
 
-  duration: 1 * 1000,
-  enterDuration: 1 * 1000,
-  leaveDuration: 1 * 1000,
-})
+//   duration: 1 * 1000,
+//   enterDuration: 1 * 1000,
+//   leaveDuration: 1 * 1000,
+// })
+const props = defineProps<Props>()
 
 const emit = defineEmits(['enter', 'leave'])
 
@@ -99,11 +100,7 @@ interface AnimatePayload {
   animation: AnimateCssNames
   reverse?: boolean
   delay?: number
-  enterDelay?: number
-  leaveDelay?: number
   duration?: number
-  enterDuration?: number
-  leaveDuration?: number
 }
 
 const addClass = (node: HTMLElement, ...clazz: string[]) => {
@@ -139,25 +136,19 @@ const cleanSideEffects = () => {
 
 const animateCSS = (payload: AnimatePayload) => {
   return new Promise<string>((resolve) => {
-    const { elem, animation, reverse = false, duration = DEFAULT_DIRATION, enterDuration, leaveDuration, delay = 0, enterDelay, leaveDelay } = payload
+    const { elem, animation, reverse = false, duration = DEFAULT_DIRATION, delay = 0 } = payload
 
     const node = unref(elem)
     if (!node) return resolve('elem is falsy')
 
     const prefix = 'animate__'
 
-    const inDuration = enterDuration || duration
-    const outDuration = leaveDuration || duration
-
-    const inDelay = enterDelay || delay
-    const outDelay = leaveDelay || delay
-
     const animationName = `${prefix}${animation}`
     const animatedName = `${prefix}animated`
 
     cleanups.push(
-      setDuration(node, reverse ? outDuration : inDuration),
-      setDelay(node, reverse ? outDelay : inDelay),
+      setDuration(node, duration),
+      setDelay(node, delay),
       setAnimateDirection(node, reverse),
       addClass(node, animatedName, animationName),
     )
@@ -176,22 +167,22 @@ const animateCSS = (payload: AnimatePayload) => {
 const onEnter = (elem: HTMLElement, done: Fn) => {
   emit('enter')
 
-  const { name, enterAnimate, enterDuration, enterDelay } = props
+  const { name, enterAnimate, duration, enterDuration, delay, enterDelay } = props
   const animation = enterAnimate || name
   if (!animation) return done()
 
   animateCSS({
     elem,
     animation,
-    enterDuration,
-    enterDelay,
+    duration: enterDuration || duration,
+    delay: enterDelay || delay,
   }).then(done)
 }
 
 const onLeave = (elem: HTMLElement, done: Fn) => {
   emit('leave')
 
-  const { name, leaveAnimate, leaveDuration, leaveDelay } = props
+  const { name, leaveAnimate, duration, leaveDuration, delay, leaveDelay } = props
   const animation = leaveAnimate || name
   if (!animation) return done()
 
@@ -199,8 +190,8 @@ const onLeave = (elem: HTMLElement, done: Fn) => {
     elem,
     animation,
     reverse: !leaveAnimate, // if leaveAnimate is not set, reverse is true
-    leaveDuration,
-    leaveDelay,
+    duration: leaveDuration || duration,
+    delay: leaveDelay || delay,
   }).then(done)
 }
 </script>
