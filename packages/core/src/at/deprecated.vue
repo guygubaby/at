@@ -16,8 +16,13 @@
 </template>
 
 <script lang="ts" setup>
+/**
+ * @deprecated
+ *
+ * use component.ts for better typescript support
+ */
 import type { Fn } from '@vueuse/core'
-import type { AnimateCssNames } from './misc'
+import type { AnimateCssNames } from './types'
 import { animateCSS } from './utils'
 
 interface Props {

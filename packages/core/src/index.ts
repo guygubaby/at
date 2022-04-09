@@ -1,6 +1,13 @@
-import AT from './at/index.vue'
+import AT from './at/component'
 import 'animate.css'
 
-export * from './at/utils'
-export * from './at/misc'
+export {
+  animateElem,
+  defineOptions,
+} from './at/utils'
+
+export {
+  AnimateCssPresets,
+} from './at/constants'
+
 export default AT

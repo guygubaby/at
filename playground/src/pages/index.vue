@@ -13,7 +13,7 @@
       Or
     </p>
     <br>
-    <button ref="buttonRef" class="btn">
+    <button ref="buttonRef" class="btn" @click="manuallyAnimate">
       animte el directly
     </button>
   </div>
@@ -21,15 +21,16 @@
 
 <script setup lang="ts">
 import { useToggle } from '@vueuse/core'
-import AT, { AnimateCssPresets, animateElem, defineOptions } from '@bryce-loskie/at'
+import AT, { AnimateCssPresets, animateElem, defineOptions } from 'at/index'
 
 const transitionOptions = defineOptions({
   appear: true,
-  animate: 'backInDown',
+  animate: AnimateCssPresets.backInDown,
   enterAnimate: AnimateCssPresets.backInDown,
   leaveAnimate: AnimateCssPresets.backOutUp,
   enterDuration: 1000,
-  leaveDuration: 3000,
+  leaveDuration: 500,
+  leaveDelay: 50,
 })
 
 const isShow = ref(true)
@@ -61,12 +62,14 @@ const handleAl = () => {
 
 const buttonRef = ref()
 
-onMounted(() => {
+const manuallyAnimate = () => {
   animateElem({
-    elem: buttonRef.value,
+    elem: buttonRef,
     animation: AnimateCssPresets.rotateIn,
-    repeat: '2',
+    repeat: 4,
     direction: 'alternate',
   })
-})
+}
+
+onMounted(manuallyAnimate)
 </script>

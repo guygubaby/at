@@ -30,7 +30,7 @@
   "scripts": {
     "prepublishOnly": "pnpm build",
     "dev": "pnpm build -- --watch",
-    "build": "vueup",
+    "build": "tsup",
     "start": "esno src/index.ts"
   },
   "funding": "https://github.com/sponsors/guygubaby",

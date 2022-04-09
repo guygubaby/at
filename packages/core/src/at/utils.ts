@@ -1,19 +1,11 @@
 import { unref } from 'vue'
-import type { Fn, MaybeRef } from '@vueuse/core'
-import type { AnimateCssNames } from './misc'
-import { DEFAULT_DIRATION } from './misc'
+import type { Fn } from '@vueuse/core'
+import type { AnimateElemPayload, AnimatePayload, PropsType } from './types'
+import { DEFAULT_DIRATION } from './constants'
 
-export interface AnimatePayload {
-  elem: MaybeRef<HTMLElement>
-  animation: AnimateCssNames
-  reverse?: boolean
-  delay?: number
-  duration?: number
+export const isDef = (val: unknown): val is NonNullable<typeof val> => val !== undefined && val !== null
 
-  // following are just for animateElem function usage
-  repeat?: number | string | 'infinite'
-  direction?: 'reverse' | 'normal' | 'alternate' | 'alternate-reverse' | 'initial' | 'inherit'
-}
+export const isLooseTruthy = (val: unknown): val is true => isDef(val) && val !== ''
 
 const addClass = (node: HTMLElement, ...clazz: string[]) => {
   node.classList.add(...clazz)
@@ -52,11 +44,11 @@ export const animateCSS = (payload: AnimatePayload) => {
     cleanups.length = 0
   }
 
-  return new Promise<string>((resolve) => {
+  return new Promise<boolean>((resolve) => {
     const { elem, animation, reverse = false, duration = DEFAULT_DIRATION, delay = 0, repeat, direction } = payload
 
     const node = unref(elem)
-    if (!node) return resolve('elem is falsy')
+    if (!node) return resolve(false)
 
     const prefix = 'animate__'
 
@@ -76,14 +68,12 @@ export const animateCSS = (payload: AnimatePayload) => {
     function handleAnimationEnd(event: AnimationEvent) {
       event.stopPropagation()
       cleanSideEffects()
-      resolve('Animation ended')
+      resolve(true)
     }
 
     node.addEventListener('animationend', handleAnimationEnd, { once: true })
   })
 }
-
-export type AnimateElemPayload = Pick<AnimatePayload, 'elem' | 'animation' | 'delay' | 'duration' | 'repeat' | 'direction'>
 
 /**
  * Directly apply animation on an element
@@ -91,3 +81,26 @@ export type AnimateElemPayload = Pick<AnimatePayload, 'elem' | 'animation' | 'de
 export const animateElem = (payload: AnimateElemPayload) => {
   return animateCSS(payload)
 }
+
+/**
+ * Default options with ts type
+ *
+ * ```html
+ * <AT v-bind='transitionOptions'>
+ *  <something-magic />
+ * </AT>
+ * ```
+ *
+ * ```typescript
+ * const transitionOptions = defineOptions({
+ *    appear: true,
+ *    enterAnimate: AnimateCssPresets.backInDown,
+ *    leaveAnimate: AnimateCssPresets.backOutUp,
+ *    duration: 500,
+ *  })
+ * ```
+ *
+ * @param options AT transition options
+ * @returns passed options
+ */
+export const defineOptions = (options: PropsType) => options
