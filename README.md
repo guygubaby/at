@@ -61,15 +61,15 @@ interface Options {
   /**
    * Animation name from animate.css, default is ''
    */
-  name?: AnimateCssNames | ''
+  name?: AnimateCssNames
   /**
    * Enter animation name, default is `name`, higher property than `name` if set
    */
-  enterAnimate?: AnimateCssNames | ''
+  enterAnimate?: AnimateCssNames
   /**
    * Leave animation name, default is `name`, higher property than `name` if set
    */
-  leaveAnimate?: AnimateCssNames | ''
+  leaveAnimate?: AnimateCssNames
   /**
    * Animation delay, default is 0
    */
@@ -99,7 +99,7 @@ interface Options {
    *
    * doc: https://vuejs.org/guide/built-ins/transition.html#transition-modes
    */
-  mode?: 'out-in' | 'in-out'
+  mode?: TransitionProps['mode']
   /**
    * If you also want to apply a transition on the initial render of a node
    *
@@ -107,7 +107,7 @@ interface Options {
    *
    * doc: https://vuejs.org/guide/built-ins/transition.html#transition-on-appear
    */
-  appear?: boolean
+  appear?: TransitionProps['appear']
 }
 ```
 
@@ -123,7 +123,7 @@ interface Options {
 </template>
 
 <script setup lang="ts">
-import { animateElem } from 'at/index'
+import { animateElem } from '@bryce-loskie/at'
 
 const buttonRef = ref()
 

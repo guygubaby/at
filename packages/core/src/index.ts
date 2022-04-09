@@ -10,4 +10,6 @@ export {
   AnimateCssPresets,
 } from './at/constants'
 
+export * from './at/types'
+
 export default AT

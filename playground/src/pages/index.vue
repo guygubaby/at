@@ -5,6 +5,7 @@
         Hi there
       </p>
     </AT>
+    <Controller @on-change="handleAnimationChange" />
     <button class="btn mt-10" @click="toggle()">
       toggle
     </button>
@@ -16,25 +17,35 @@
     <button ref="buttonRef" class="btn" @click="manuallyAnimate">
       animte el directly
     </button>
+    <Controller @on-change="handleManullyAnimationChange" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { useToggle } from '@vueuse/core'
-import AT, { AnimateCssPresets, animateElem, defineOptions } from 'at/index'
-
-const transitionOptions = defineOptions({
-  appear: true,
-  animate: AnimateCssPresets.backInDown,
-  enterAnimate: AnimateCssPresets.backInDown,
-  leaveAnimate: AnimateCssPresets.backOutUp,
-  enterDuration: 1000,
-  leaveDuration: 500,
-  leaveDelay: 50,
-})
+import type { AnimateCssNames } from '@bryce-loskie/at'
+import AT, { AnimateCssPresets, animateElem, defineOptions } from '@bryce-loskie/at'
 
 const isShow = ref(true)
 const toggle = useToggle(isShow)
+
+const animationName = ref<AnimateCssNames>(AnimateCssPresets.backInDown)
+
+const transitionOptions = computed(() => {
+  return defineOptions({
+    appear: true,
+    animate: animationName.value,
+    // enterAnimate: AnimateCssPresets.backInDown,
+    // leaveAnimate: AnimateCssPresets.backOutUp,
+    enterDuration: 1000,
+    leaveDuration: 500,
+    leaveDelay: 50,
+  })
+})
+
+const handleAnimationChange = (name: AnimateCssNames) => {
+  animationName.value = name
+}
 
 const handleBe = () => {
   console.log('before enter')
@@ -62,13 +73,20 @@ const handleAl = () => {
 
 const buttonRef = ref()
 
+const manullyNnimationName = ref<AnimateCssNames>(AnimateCssPresets.backInDown)
+
 const manuallyAnimate = () => {
   animateElem({
     elem: buttonRef,
-    animation: AnimateCssPresets.rotateIn,
-    repeat: 4,
+    animation: manullyNnimationName.value,
+    repeat: 1,
     direction: 'alternate',
   })
+}
+
+const handleManullyAnimationChange = (name: AnimateCssNames) => {
+  manullyNnimationName.value = name
+  manuallyAnimate()
 }
 
 onMounted(manuallyAnimate)
