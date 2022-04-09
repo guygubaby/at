@@ -132,8 +132,8 @@ export default defineComponent({
         return
       }
 
-      const finalDuration = enterDuration ?? duration
-      const finalDelay = enterDelay ?? delay
+      const finalDuration = isLooseTruthy(enterDuration) ? enterDuration : duration
+      const finalDelay = isLooseTruthy(enterDelay) ? enterDelay : delay
 
       animateCSS({
         elem: elem as HTMLElement,
@@ -155,8 +155,8 @@ export default defineComponent({
         return
       }
 
-      const finalDuration = leaveDuration ?? duration
-      const finalDelay = leaveDelay ?? delay
+      const finalDuration = isLooseTruthy(leaveDuration) ? leaveDuration : duration
+      const finalDelay = isLooseTruthy(leaveDelay) ? leaveDelay : delay
 
       animateCSS({
         elem: elem as HTMLElement,
