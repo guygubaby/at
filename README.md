@@ -1,6 +1,9 @@
 # at
 
 [![NPM version](https://img.shields.io/npm/v/@bryce-loskie/at?color=a1b858&label=)](https://www.npmjs.com/package/@bryce-loskie/at)
+[![Monthly downloads](https://badgen.net/npm/dm/@bryce-loskie/at)](https://npm.im/@bryce-loskie/at)
+[![Install size](https://packagephobia.now.sh/badge?p=@bryce-loskie/at)](https://packagephobia.now.sh/result?p=@bryce-loskie/at)
+[![Bundle size](https://badgen.net/bundlephobia/minzip/@bryce-loskie/at)](https://bundlephobia.com/result?p=@bryce-loskie/at)
 
 Animate.css powered vue transition lib
 
