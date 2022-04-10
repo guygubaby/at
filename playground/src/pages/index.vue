@@ -17,7 +17,7 @@
     <button ref="buttonRef" class="btn" @click="manuallyAnimate">
       animte el directly
     </button>
-    <Controller @on-change="handleManullyAnimationChange" />
+    <Controller @on-change="handleManuallyAnimationChange" />
   </div>
 </template>
 
@@ -73,19 +73,19 @@ const handleAl = () => {
 
 const buttonRef = ref()
 
-const manullyNnimationName = ref<AnimateCssNames>(AnimateCssPresets.backInDown)
+const manuallyAnimationName = ref<AnimateCssNames>(AnimateCssPresets.backInDown)
 
 const manuallyAnimate = () => {
   animateElem({
     elem: buttonRef,
-    animation: manullyNnimationName.value,
+    animation: manuallyAnimationName.value,
     repeat: 1,
     direction: 'alternate',
   })
 }
 
-const handleManullyAnimationChange = (name: AnimateCssNames) => {
-  manullyNnimationName.value = name
+const handleManuallyAnimationChange = (name: AnimateCssNames) => {
+  manuallyAnimationName.value = name
   manuallyAnimate()
 }
 
