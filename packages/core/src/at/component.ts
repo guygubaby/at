@@ -112,6 +112,14 @@ export default defineComponent({
       required: false,
       default: false,
     },
+    /**
+     * https://vuejs.org/guide/built-ins/transition.html#css-based-transitions
+     */
+    type: {
+      type: String as PropType<TransitionProps['type']>,
+      required: false,
+      default: 'animation',
+    },
   },
   emits: ['before-enter', 'enter', 'after-enter', 'enter-cancelled', 'leave', 'before-leave', 'after-leave', 'leave-cancelled'],
   setup(props, { slots, emit }) {
@@ -175,7 +183,7 @@ export default defineComponent({
           css: false,
           appear: props.appear,
           mode: props.mode,
-          type: 'animation',
+          type: props.type,
           onBeforeEnter,
           onEnter,
           onAfterEnter,

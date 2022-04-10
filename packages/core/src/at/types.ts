@@ -122,19 +122,17 @@ export interface PropsType {
    *
    * Animation name from animate.css, default is ''
    */
-  // name?: AnimateCssNames | '' // because of props can not use outer type, so use string instead
   name?: AnimateCssNames
   /**
    * Animation name from animate.css, default is ''
    */
-  // name?: AnimateCssNames | '' // because of props can not use outer type, so use string instead
   animate?: AnimateCssNames
   /**
-   * Enter animation name, default is `name`, higher property than `name` if set
+   * Enter animation name, default is `name/animate`, higher property than `name/animate` if set
    */
   enterAnimate?: AnimateCssNames
   /**
-   * Leave animation name, default is `name`, higher property than `name` if set
+   * Leave animation name, default is `name/animate`, higher property than `name/animate` if set
    */
   leaveAnimate?: AnimateCssNames
   /**
@@ -175,6 +173,10 @@ export interface PropsType {
    * doc: https://vuejs.org/guide/built-ins/transition.html#transition-on-appear
    */
   appear?: TransitionProps['appear']
+  /**
+   * https://vuejs.org/guide/built-ins/transition.html#css-based-transitions
+   */
+  type?: TransitionProps['type']
 }
 
 export interface AnimatePayload {
