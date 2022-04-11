@@ -2,7 +2,6 @@ import type { Fn } from '@vueuse/core'
 import type { PropType, TransitionProps } from 'vue'
 import { Transition, defineComponent, h } from 'vue'
 import type { AnimateCssNames } from './types'
-import { DEFAULT_DIRATION } from './constants'
 import { animateCSS, isLooseTruthy } from './utils'
 
 export default defineComponent({
@@ -56,7 +55,6 @@ export default defineComponent({
     enterDelay: {
       type: Number,
       required: false,
-      default: 0,
     },
     /**
      * Leave animation delay, defalt is 0, higher property than `delay` if set
@@ -64,7 +62,6 @@ export default defineComponent({
     leaveDelay: {
       type: Number,
       required: false,
-      default: 0,
     },
     /**
      * Animation duration, default is 1*1000 ms
@@ -72,7 +69,6 @@ export default defineComponent({
     duration: {
       type: Number,
       required: false,
-      default: DEFAULT_DIRATION,
     },
     /**
      * Enter animation duration, default is `duration`, higher property than `duration` if set
@@ -80,7 +76,6 @@ export default defineComponent({
     enterDuration: {
       type: Number,
       required: false,
-      default: DEFAULT_DIRATION,
     },
     /**
      * Leave animation duration, default is `duration`, higher property than `duration` if set
@@ -88,7 +83,6 @@ export default defineComponent({
     leaveDuration: {
       type: Number,
       required: false,
-      default: DEFAULT_DIRATION,
     },
     /**
      * Vue transition mode, default to undefined

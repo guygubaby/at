@@ -37,7 +37,8 @@ const transitionOptions = computed(() => {
     animate: animationName.value,
     // enterAnimate: AnimateCssPresets.backInDown,
     // leaveAnimate: AnimateCssPresets.backOutUp,
-    enterDuration: 1000,
+    duration: 300,
+    // enterDuration: 1000,
     leaveDuration: 500,
     leaveDelay: 50,
   })
