@@ -9,11 +9,7 @@ export const isLooseTruthy = (val: unknown): val is true => isDef(val) && val !=
 
 const addClass = (node: HTMLElement, ...clazz: string[]) => {
   node.classList.add(...clazz)
-  node.style.animationPlayState = 'running'
-  return () => {
-    node.classList.remove(...clazz)
-    node.style.animationPlayState = ''
-  }
+  return () => node.classList.remove(...clazz)
 }
 
 const setDuration = (node: HTMLElement, duration: number) => {
@@ -78,9 +74,7 @@ export const animateCSS = (payload: AnimatePayload) => {
 /**
  * Directly apply animation on an element
  */
-export const animateElem = (payload: AnimateElemPayload) => {
-  return animateCSS(payload)
-}
+export const animateElem = (payload: AnimateElemPayload) => animateCSS(payload)
 
 /**
  * Default options with ts type
@@ -104,3 +98,8 @@ export const animateElem = (payload: AnimateElemPayload) => {
  * @returns passed options
  */
 export const defineOptions = (options: PropsType) => options
+
+/**
+ * used to define variants for v-animate directive
+ */
+export const defineVariants = (options: Omit<AnimateElemPayload, 'elem'>) => options

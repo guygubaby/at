@@ -153,6 +153,29 @@ type AnimateElemPayload = {
 }
 ```
 
+## 3. Use directive
+
+```html
+<button v-animate="'backInDown'" class="btn">
+  directive
+</button>
+
+<button v-animate="variants" class="btn">
+  directive 2
+</button>
+```
+
+```typescript
+import { defineDirective, defineVariants } from '@bryce-loskie/at'
+
+const vAnimate = defineDirective()
+
+const variants = defineVariants({
+  animation: 'backInDown',
+  delay: 500,
+})
+```
+
 [Real Example code](https://github.com/guygubaby/at/blob/main/playground/src/pages/index.vue)
 
 ## License

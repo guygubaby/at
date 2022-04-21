@@ -1,5 +1,5 @@
 <template>
-  <div class="py-40">
+  <div class="py-30">
     <AT v-bind="transitionOptions" @before-enter="handleBe" @enter="handleE" @after-enter="handleAe" @before-leave="handleBl" @leave="handleL" @after-leave="handleAl">
       <p v-if="isShow">
         Hi there
@@ -18,6 +18,10 @@
       animte el directly
     </button>
     <Controller @on-change="handleManuallyAnimationChange" />
+
+    <router-link class="btn absolute left-1/2 transform -translate-x-1/2 bottom-18vh" to="/directive">
+      directive usage
+    </router-link>
   </div>
 </template>
 

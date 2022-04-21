@@ -42,5 +42,8 @@
     "vite-plugin-pages": "^0.22.0",
     "vue": "^3.2.31",
     "vue-router": "^4.0.14"
+  },
+  "dependencies": {
+    "@bryce-loskie/utils": "^0.1.27"
   }
 }

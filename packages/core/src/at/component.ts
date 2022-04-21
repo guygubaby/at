@@ -129,10 +129,7 @@ export default defineComponent({
 
       const { name, animate, enterAnimate, duration, enterDuration, delay, enterDelay } = props
       const animation = isLooseTruthy(enterAnimate) ? enterAnimate : isLooseTruthy(animate) ? animate : name
-      if (!animation) {
-        done()
-        return
-      }
+      if (!animation) return done()
 
       const finalDuration = isLooseTruthy(enterDuration) ? enterDuration : duration
       const finalDelay = isLooseTruthy(enterDelay) ? enterDelay : delay
@@ -142,9 +139,7 @@ export default defineComponent({
         animation,
         duration: finalDuration,
         delay: finalDelay,
-      }).then(() => {
-        done()
-      })
+      }).then(done)
     }
 
     const onLeave = (elem: Element, done: Fn) => {
@@ -152,10 +147,7 @@ export default defineComponent({
 
       const { name, animate, leaveAnimate, duration, leaveDuration, delay, leaveDelay } = props
       const animation = isLooseTruthy(leaveAnimate) ? leaveAnimate : isLooseTruthy(animate) ? animate : name
-      if (!animation) {
-        done()
-        return
-      }
+      if (!animation) return done()
 
       const finalDuration = isLooseTruthy(leaveDuration) ? leaveDuration : duration
       const finalDelay = isLooseTruthy(leaveDelay) ? leaveDelay : delay
@@ -166,9 +158,7 @@ export default defineComponent({
         reverse: !leaveAnimate, // if leaveAnimate is not set, reverse is true
         duration: finalDuration,
         delay: finalDelay,
-      }).then(() => {
-        done()
-      })
+      }).then(done)
     }
 
     return () => (
