@@ -19,8 +19,11 @@
     </button>
     <Controller @on-change="handleManuallyAnimationChange" />
 
-    <router-link class="btn absolute left-1/2 transform -translate-x-1/2 bottom-18vh" to="/directive">
-      directive usage
+    <router-link class="icon-btn !outline-none mt-8" to="/directive">
+      <div class="ring flex items-center px-2 py-1 rounded">
+        <span>Directive usage</span>
+        <div i-carbon-arrow-right m="l-2" />
+      </div>
     </router-link>
   </div>
 </template>

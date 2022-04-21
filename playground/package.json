@@ -6,12 +6,17 @@
   "private": "true",
   "scripts": {
     "dev": "vite",
-    "build": "vite build"
+    "build": "vite-ssg build"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@bryce-loskie/at": "workspace:*"
+  },
+  "devDependencies": {
+    "@vueuse/head": "^0.7.6",
+    "vite-ssg": "^0.19.2",
+    "vue-router": "^4.0.14"
   }
 }

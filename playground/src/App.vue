@@ -4,3 +4,17 @@
     <Footer />
   </main>
 </template>
+
+<script lang="ts" setup>
+import { useHead } from '@vueuse/head'
+
+useHead({
+  title: 'Vue AT | Playground',
+  meta: [
+    {
+      name: 'description',
+      content: 'Vue AT Playground',
+    },
+  ],
+})
+</script>
