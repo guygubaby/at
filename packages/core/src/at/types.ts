@@ -187,8 +187,10 @@ export interface AnimatePayload {
   duration?: number
 
   // following are just for animateElem function usage
-  repeat?: number | string | 'infinite'
+  repeat?: number | 'infinite'
   direction?: 'reverse' | 'normal' | 'alternate' | 'alternate-reverse' | 'initial' | 'inherit'
+
+  onComplete?: (node: HTMLElement) => void
 }
 
-export type AnimateElemPayload = Pick<AnimatePayload, 'elem' | 'animation' | 'delay' | 'duration' | 'repeat' | 'direction'>
+export type AnimateElemPayload = Pick<AnimatePayload, 'elem' | 'animation' | 'delay' | 'duration' | 'repeat' | 'direction' | 'onComplete'>

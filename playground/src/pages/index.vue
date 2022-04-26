@@ -89,6 +89,14 @@ const manuallyAnimate = () => {
     animation: manuallyAnimationName.value,
     repeat: 1,
     direction: 'alternate',
+    onComplete: (elem) => {
+      console.log('onComplete', elem)
+      animateElem({
+        elem,
+        animation: 'jello',
+        repeat: 'infinite',
+      })
+    },
   })
 }
 

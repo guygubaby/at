@@ -1,5 +1,6 @@
 import { unref } from 'vue'
 import type { Fn } from '@vueuse/core'
+import { noop } from '@bryce-loskie/utils'
 import type { AnimateElemPayload, AnimatePayload, PropsType } from './types'
 import { DEFAULT_DIRATION } from './constants'
 
@@ -41,10 +42,14 @@ export const animateCSS = (payload: AnimatePayload) => {
   }
 
   return new Promise<boolean>((resolve) => {
-    const { elem, animation, reverse = false, duration = DEFAULT_DIRATION, delay = 0, repeat, direction } = payload
+    const { elem, animation, reverse = false, duration = DEFAULT_DIRATION, delay = 0, repeat, direction, onComplete = noop } = payload
 
     const node = unref(elem)
-    if (!node) return resolve(false)
+
+    if (!node) {
+      onComplete(node)
+      return resolve(false)
+    }
 
     const prefix = 'animate__'
 
@@ -64,6 +69,7 @@ export const animateCSS = (payload: AnimatePayload) => {
     function handleAnimationEnd(event: AnimationEvent) {
       event.stopPropagation()
       cleanSideEffects()
+      onComplete(node)
       resolve(true)
     }
 

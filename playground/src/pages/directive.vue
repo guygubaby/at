@@ -23,12 +23,20 @@
 </template>
 
 <script lang="ts" setup>
-import { defineDirective, defineVariants } from '@bryce-loskie/at'
+import { animateElem, defineDirective, defineVariants } from '@bryce-loskie/at'
 
 const vAnimate = defineDirective()
 
 const variants = defineVariants({
   animation: 'backInDown',
   delay: 500,
+  onComplete: (elem) => {
+    console.log('onComplete', elem)
+    animateElem({
+      elem,
+      animation: 'jello',
+      repeat: 'infinite',
+    })
+  },
 })
 </script>
