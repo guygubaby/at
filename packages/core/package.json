@@ -2,13 +2,20 @@
   "name": "@bryce-loskie/at",
   "version": "0.1.15",
   "packageManager": "pnpm@6.32.3",
-  "description": "Animate.css powered vue transition lib",
+  "description": "Animate.css and gsap powered vue transition lib",
   "publishConfig": {
     "access": "public"
   },
-  "files": [
-    "dist"
+  "keywords": [
+    "vue transition"
   ],
+  "license": "MIT",
+  "author": "guygubaby <guygubaby@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guygubaby/at.git"
+  },
+  "funding": "https://github.com/sponsors/guygubaby",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -19,6 +26,10 @@
       "types": "./dist/index.d.ts"
     }
   },
+  "files": [
+    "dist",
+    "*.d.ts"
+  ],
   "typesVersions": {
     "*": {
       "*": [
@@ -27,34 +38,22 @@
       ]
     }
   },
+  "sideEffects": false,
   "scripts": {
     "prepublishOnly": "pnpm build",
-    "dev": "pnpm build -- --watch",
+    "dev": "pnpm build --watch",
     "build": "tsup",
     "start": "esno src/index.ts"
   },
-  "funding": "https://github.com/sponsors/guygubaby",
-  "author": "guygubaby <guygubaby@gmail.com>",
-  "license": "MIT",
-  "sideEffects": false,
   "bugs": {
     "url": "https://github.com/guygubaby/at/issues"
   },
   "homepage": "https://github.com/guygubaby/at#readme",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/guygubaby/at.git"
-  },
-  "keywords": [
-    "vue transition"
-  ],
-  "devDependencies": {
-    "@bryce-loskie/vueup": "^1.0.13"
-  },
   "peerDependencies": {
     "vue": "^3.0.0"
   },
   "dependencies": {
-    "animate.css": "^4.1.1"
+    "animate.css": "^4.1.1",
+    "gsap": "^3.10.4"
   }
 }

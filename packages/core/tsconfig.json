@@ -1,6 +1,9 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "declaration": true
-  }
+    "declaration": true,
+  },
+  "files": [
+    "node_modules/gsap/types/index.d.ts"
+  ]
 }

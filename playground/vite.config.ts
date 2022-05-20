@@ -12,7 +12,8 @@ export default defineConfig({
   resolve: {
     alias: {
       '@/': `${resolve(__dirname, 'src')}/`,
-      'at': resolve('../packages/core/src/'),
+      '@bryce-loskie/at/gsap': resolve('../packages/core/src/gsap/index'),
+      '@bryce-loskie/at': resolve('../packages/core/src/index'),
     },
   },
   plugins: [

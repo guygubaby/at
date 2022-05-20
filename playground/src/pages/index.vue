@@ -25,6 +25,16 @@
         <div i-carbon-arrow-right m="l-2" />
       </div>
     </router-link>
+
+    <br>
+
+    <router-link class="icon-btn !outline-none mt-8" to="/gsap">
+      <div class="ring flex items-center px-2 py-1 rounded">
+        <span>gsap usage</span>
+        <div i-carbon-flash m="l-2" text="purple-500" />
+        <div i-carbon-arrow-right m="l-2" />
+      </div>
+    </router-link>
   </div>
 </template>
 
