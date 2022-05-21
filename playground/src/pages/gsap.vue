@@ -46,7 +46,7 @@ const variants = defineVariants({
   enter: {
     x: 0,
     opacity: 1,
-    onComplete(el) {
+    onComplete(el: HTMLElement) {
       console.log('onComplete', el)
     },
   },

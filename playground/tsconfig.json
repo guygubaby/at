@@ -14,8 +14,6 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "@bryce-loskie/at": ["../packages/core/src/index"],
-      "@bryce-loskie/at/gsap": ["../packages/core/src/gsap/index"],
     },
     "types": ["vite/client", "node", "vite-plugin-pages/client"],
   },

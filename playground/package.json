@@ -1,16 +1,16 @@
 {
   "name": "playground",
   "version": "0.0.0",
-  "description": "",
-  "main": "index.js",
   "private": "true",
+  "description": "",
+  "keywords": [],
+  "license": "ISC",
+  "author": "",
+  "main": "index.js",
   "scripts": {
     "dev": "vite",
     "build": "vite-ssg build"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "@bryce-loskie/at": "workspace:*"
   },
