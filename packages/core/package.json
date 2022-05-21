@@ -1,6 +1,6 @@
 {
   "name": "@bryce-loskie/at",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "packageManager": "pnpm@6.32.3",
   "description": "Animate.css and gsap powered vue transition lib",
   "publishConfig": {
@@ -35,14 +35,6 @@
     "dist",
     "*.d.ts"
   ],
-  "typesVersions": {
-    "*": {
-      "*": [
-        "./dist/*",
-        "./dist/index.d.ts"
-      ]
-    }
-  },
   "sideEffects": false,
   "scripts": {
     "prepublishOnly": "pnpm build",
