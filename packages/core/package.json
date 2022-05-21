@@ -1,6 +1,6 @@
 {
   "name": "@bryce-loskie/at",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "packageManager": "pnpm@6.32.3",
   "description": "Animate.css and gsap powered vue transition lib",
   "publishConfig": {
@@ -24,6 +24,11 @@
       "require": "./dist/index.js",
       "import": "./dist/index.mjs",
       "types": "./dist/index.d.ts"
+    },
+    "./gsap": {
+      "require": "./dist/gsap/index.js",
+      "import": "./dist/gsap/index.mjs",
+      "types": "./dist/gsap/index.d.ts"
     }
   },
   "files": [
